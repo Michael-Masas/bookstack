@@ -1,4 +1,3 @@
-apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bookstack
@@ -20,14 +19,14 @@ spec:
       - image: solidnerd/bookstack:0.27.5
         name: bookstack
         env:
+	- name: DB_HOST
+          value: mysql:3306
         - name: DB_DATABASE
           value: bookstack
-        - name: DB_HOST
-          value: mysql:3306
-        - name: DB_PASSWORD
-          value: secret 
         - name: DB_USERNAME
-          value: root
+          value: bookstack
+        - name: DB_PASSWORD
+          value: secret
         ports:
         - containerPort: 80
         volumeMounts:
